@@ -1,0 +1,4 @@
+git init: khởi tạo 3 vùng : working directory, staging area, repository
+git add <file_name>: add 1 file ở vùng working vào vùng stagging
+git add . : add toàn bộ file ở vùng working vào vùng stagging
+git commit -m "message" : commit file với nội dung trong message
