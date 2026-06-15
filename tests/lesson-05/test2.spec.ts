@@ -9,9 +9,8 @@ test('Add sản phẩm vào cart', async ({page}) => {
         await page.locator("//a[@href='02-xpath-product-page.html']").click();
     });
     await test.step('add sản phẩm', async () => {
-        await page.locator("//button[@data-product-id='1']").dblclick();
-        await page.locator("//button[@data-product-id='2']").dblclick();
-        await page.locator("//button[@data-product-id='2']").click();
+        await page.locator("//button[@data-product-id='1']").click({ clickCount : 2 });
+        await page.locator("//button[@data-product-id='2']").click({ clickCount : 3 });
         await page.locator("//button[@data-product-id='3']").click();
        
     });

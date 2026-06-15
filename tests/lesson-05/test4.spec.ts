@@ -22,7 +22,7 @@ test('test bai 4', async ({ page }) => {
     ];
         for (const note of notesData) {
         
-           await page.locator("//input[@id='search']").fill(note.title);
+           await page.locator("//input[@id='note-title']").fill(note.title);
            await page.locator("//textarea[@id='note-content']").fill(note.content);
            await page.locator("//button[@id='add-note']").click();
         }
