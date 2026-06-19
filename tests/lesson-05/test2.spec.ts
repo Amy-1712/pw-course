@@ -1,6 +1,13 @@
 import { test } from '@playwright/test';
+import { Page } from '@playwright/test';
 
-test('Add sản phẩm vào cart', async ({page}) => {
+export class addcart {
+    page: Page;
+
+    
+}
+
+test('Add sản phẩm vào cart', async ({ page }) => {
     await test.step('Truy cập trang https://material.playwrightvn.com/', async () => {
         await page.goto('https://material.playwrightvn.com');
 
@@ -13,6 +20,6 @@ test('Add sản phẩm vào cart', async ({page}) => {
         await page.locator("//button[@data-product-id='2']").dblclick();
         await page.locator("//button[@data-product-id='2']").click();
         await page.locator("//button[@data-product-id='3']").click();
-       
+
     });
 });

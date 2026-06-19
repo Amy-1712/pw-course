@@ -1,11 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-test.beforeEach('', async ({ page }) => {
-    await page.goto("https://pw-practice-dev.playwrightvn.com/wp-admin");
-});
+
 
 test.describe('AUTH - authentication', async () => {
+    test.beforeEach('', async ({ page }) => {
+        await page.goto("https://pw-practice-dev.playwrightvn.com/wp-admin");
+    });
     test('@AUTH_001:Login fail', async ({ page }) => {
+        test.beforeEach(async ({ page }) => {
+            await page.goto("https://pw-practice-dev.playwrightvn.com/wp-admin");
+        });
         //B1: Nhập vào thông tin username, password bị sai
         await test.step('Nhập vào thông tin username, password bị sai', async () => {
             const usernameInput = page.locator("//input[@id='user_login']");
