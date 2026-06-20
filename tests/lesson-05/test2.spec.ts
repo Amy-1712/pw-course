@@ -1,25 +1,21 @@
 import { test } from '@playwright/test';
-import { Page } from '@playwright/test';
+import { ProductPage } from '../lesson-05/ProductPage';
 
-export class addcart {
-    page: Page;
+//a.thêm sp vào giỏ hàng
+test('AddCart', async ({ page }) => {
+    const AddCart = new ProductPage(page);
+    const quantitySP1 = 2;
+    const quantitySP2 = 3;
+    const quantitySP3 = 1;
 
-    
-}
+    const priceSP1 = 10;
+    const priceSP2 = 20;
+    const priceSP3 = 30;
 
-test('Add sản phẩm vào cart', async ({ page }) => {
-    await test.step('Truy cập trang https://material.playwrightvn.com/', async () => {
-        await page.goto('https://material.playwrightvn.com');
 
-    });
-    await test.step('click vào “Bài học 2: Product page”', async () => {
-        await page.locator("//a[@href='02-xpath-product-page.html']").click();
-    });
-    await test.step('add sản phẩm', async () => {
-        await page.locator("//button[@data-product-id='1']").dblclick();
-        await page.locator("//button[@data-product-id='2']").dblclick();
-        await page.locator("//button[@data-product-id='2']").click();
-        await page.locator("//button[@data-product-id='3']").click();
+    await AddCart.navigate();
+    await AddCart.clickToProductPage();
+    await AddCart.addProduct(quantitySP1,quantitySP2,quantitySP3);
+    await AddCart.checkSoLuongSP(quantitySP1,quantitySP2,quantitySP3);
 
-    });
 });

@@ -1,26 +1,18 @@
 import { test } from '@playwright/test';
+import { RegisterPage } from '../lesson-05/RegisterPage';
 
-test('Register thông tin', async ({ page }) => {
-    await test.step('Truy cập trang https://material.playwrightvn.com/ )', async () => {
-        await page.goto('https://material.playwrightvn.com');
+test('Resgister test', async ({ page }) => {
+    const registerPage = new RegisterPage(page);
+    const username = 'anhle_k23';
+    const email = 'anhle@gmail.com';
+    const dob = '2026-02-02';
+    const filePath = 'data/profile.txt';
+    const bio = ' hello';
 
-    });
-    await test.step('click vào “Bài học 1: Register Page (có đủ các element)”', async () => {
-        await page.locator("//a[@href='01-xpath-register-page.html']").click();
+    await registerPage.navigate();
+    await registerPage.clickToRegisterPage();
+    await registerPage.register(username, email, bio, dob, filePath);
+    await registerPage.verifyResigteredData(username, email);
 
-    });
-    await test.step('input thông tin các field ', async () => {
-        await page.locator("//input [@id='username']").fill("Anh");
-        await page.locator("//input [@id='email']").fill("anh@gmail.com");
-        await page.locator("//input [@id='female']").check();
-        await page.locator("//input [@id='reading']").check();
-        await page.locator("//select[@id='interests']").selectOption({ label: 'Art' });
-        await page.locator("//select[@id='country']").selectOption({ label: 'United States' });
-        await page.locator("//input[@id='dob']").fill("2026-01-01");
-        await page.locator("//input[@id='profile']").setInputFiles("data/profile.txt");
-        await page.locator("//textarea[@id='bio']").fill('Hello bạn!');
-        await page.locator("//button[@type='submit']").click();
-       
-
-    });
 });
+
