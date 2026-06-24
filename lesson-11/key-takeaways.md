@@ -1,0 +1,60 @@
+### 1.API
+- API viết tắt của application programming interface
+- bộ quy tắc giúp phần mềm giao tiếp với nhau
+- 
+![[Pasted image 20260624205003.png|599]]ví dụ: ứng dụng thanh toán dùng API của ngân hàng để xử lý giao dịch
+- Taị sao cần test API?
+     - Đảm bảo hoạt động đúng
+     - phát hiện lỗi sớm - bắt bug trước khi ảnh hg đến FE hoặc ng dùng cuối
+     - kiểm tra bảo mật-  đảm bảo API không bị truy cập trái phép, không lộ dữ liệu nhạy cảm
+     - kiểm tra hiệu năng - API phản hồi đủ nhanh, chịu tải được nhiều request cùng lúc
+     - tránh phụ thuộc- FE/Mobile có thể test độc lập, không cần đợi giao diện hoàn thành
+     - dễ bảo trì - khi sửa code, chạy lại test để chắc chắn không làm hỏng tính năng cũ
+- Các thành phần của API:
+     - Endpoint (URL)- địa chỉ truy cập tài nguyên
+     - Method: phương thức thao tác: GET,POST,PUT/PATCH, DELETE,...
+     - Request- yêu cầu gửi đi, gồm: 
+         - Headers: thông tin bổ sung(token xác thực, content-type...)
+         - Parameters: tham số trên URL (query params)
+         - Body: dữ liệu gửi lên (JSON, XML...)
+    - Response - phản hồi trả về, gồm:
+         - Status code: mã trạng thái (200 OK, 404 NOT Found, 500 error...)
+         - Headers: thông tin phản hồi
+         - Body: dữ liệu trả về (thường là JSON)
+    - API documentation: tài liệu hướng dẫn dùng API, gồm: thông tin về endpoint, method, URL,.... Phổ biến dùng Swagger
+- Định dạng dữ liệu dùng trong API: JSON
+- JSON: là định dạng dữ liệu phổ biến nhất để trao đổi thống tin giữa client và server
+- JSON : cấu trúc cơ bản:
+     - Object- cặp key- value trong dấu {}
+         - key luôn có kiểu string, các key không được trùng nhau
+         - value: 1 trong các kiểu dữ liệu 
+             - String: "text" (phải dùng dấu ngoặc kép)
+             - Number : 123, 3.14
+             - Boolean: true, false
+             - Null : null
+             - Object: {}
+             - Array: []
+        - Lưu ý: key phải để trong dấu ngoặc kép, không có dấu phẩy ở phần tử cuối
+- Gọi API = request tới API với các thông tin cần thiết để lấy về kết quả
+- Có nhiều cách gọi API:
+     - Command line : cURL
+     - Có giao diện: postman
+     - Automation: playwright, jmeter, restAssured
+### 2.API với 
+   - Sử dụng request fixture để thực hiện gọi API
+   - Gọi API mà không cần thực hiện thao tác thông qua trinhf duyệt
+   - Thực hiện các thao tác gọi API trực tiếp trong code
+   - Cú pháp:    test ("name" ,   ({ request }) =>  {
+   -                              //code here
+   -                      });
+   -                      request.get('link');
+   -  Ví dụ:  
+   -        const url = ‘https://material.playwrightvn.com/api/todo-app/v1/todos.php’;
+   -         const response = await request.get(url);
+   -          const responseText = await response.text();
+   -         const responseJSON = await response.json();
+   - response text : lấy ở dạng string
+   - response json: lấy ở dạng object
+   - Đối với các luồng cần authentication : 2bước
+      1.Đăng nhập với thông tin user, pw -> API trả ra token
+      2.Sử dụng token trong header để gọi các API phía sau
