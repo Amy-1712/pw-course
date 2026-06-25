@@ -40,7 +40,7 @@
      - Command line : cURL
      - Có giao diện: postman
      - Automation: playwright, jmeter, restAssured
-### 2.API với 
+### 2.API với playwright
    - Sử dụng request fixture để thực hiện gọi API
    - Gọi API mà không cần thực hiện thao tác thông qua trinhf duyệt
    - Thực hiện các thao tác gọi API trực tiếp trong code
